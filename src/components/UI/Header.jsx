@@ -6,6 +6,8 @@ function Header() {
     <div>
       <NavLink to="feed">Feed</NavLink>
       <NavLink to="profile">Profile</NavLink>
+      <NavLink to="post">New Post</NavLink>
+      <NavLink to="login">Login</NavLink>
     </div>
   )
 }
