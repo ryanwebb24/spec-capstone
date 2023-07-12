@@ -4,6 +4,8 @@ require("dotenv").config()
 const { PORT } = process.env
 // controller imports 
 const { getPosts, addPost } = require("./controller/postController")
+const { login, register } = require("./controller/authController")
+const { isAuthenticated } = require("./middleware/isAuthenticated")
 // sequelize imports 
 const { sequelize } = require("./util/database")
 const { Users } = require("./models/users")
@@ -18,8 +20,10 @@ Posts.belongsTo(Users)
 
 // posts endpoints 
 app.get("/posts", getPosts)
-app.post("/posts", addPost)
-
+app.post("/posts", isAuthenticated, addPost)
+// auth endpoints
+app.post("/login", login)
+app.post("/register", register)
 
 sequelize.sync()
 .then(() => {

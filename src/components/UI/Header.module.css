@@ -1,0 +1,11 @@
+.header {
+  background-color: lightblue;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+.header > * {
+  padding: 10px;
+  text-align: center;
+  font-size: large;
+}

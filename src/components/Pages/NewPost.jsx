@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import axios from "axios"
-
+import { useSelector } from "react-redux"
+import { selectUserId, selectToken } from "../../redux/slices/authSlice"
 function NewPost() {
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
-  const [address, setAddress] = useState("")
-  const [url, setUrl] = useState("")
-  const [rating, setRating] = useState("")
+  const [ title, setTitle ] = useState("")
+  const [ content, setContent ] = useState("")
+  const [ address, setAddress ] = useState("")
+  const [ url, setUrl ] = useState("")
+  const [ rating, setRating ] = useState("")
+  const userId = useSelector(selectUserId)
+  const token = useSelector(selectToken)
 
   function submitHandler(event) {
     event.preventDefault()
@@ -15,9 +18,14 @@ function NewPost() {
       content,
       address,
       url,
-      rating
+      rating,
+      userId
     }
-    axios.post("http://localhost:5000/posts", body)
+    axios.post("http://localhost:5000/posts", body, {
+      headers: {
+        Authorization: token
+      }
+    })
     .then(() => {
       setAddress("")
       setContent("")

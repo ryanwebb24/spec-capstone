@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import axios from "axios"
 
 function Feed() {
-  const [posts, setPosts] = useState([])
+  const [ posts, setPosts ] = useState([])
   useEffect(() => {
     axios
       .get("http://localhost:5000/posts")

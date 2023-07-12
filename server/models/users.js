@@ -11,11 +11,15 @@ module.exports = {
     username: {
       type: DataTypes.STRING(50)
     },
+    email: {
+      type: DataTypes.STRING
+    },
     hashedPass: {
       type: DataTypes.STRING
     },
     bio: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      defaultValue: ""
     },
     isPublic: {
       type: DataTypes.BOOLEAN,
