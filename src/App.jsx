@@ -6,7 +6,6 @@ import Profile from "./components/Pages/Profile"
 import Auth from "./components/Pages/Auth/Auth"
 import Location from "./components/Pages/Location"
 import NewPost from "./components/Pages/NewPost"
-import {action as logoutAction} from "./components/Pages/Auth/Logout"
 
 let router = createBrowserRouter([
   {
@@ -34,10 +33,6 @@ let router = createBrowserRouter([
         element: <NewPost />
       }
     ]
-  },
-  {
-    path: "/logout",
-    action: logoutAction
   }
 ])
 

@@ -15,7 +15,6 @@ module.exports = {
         let token
         // this does a jwt check and compares the two keys if they are the same if they arent then it throws and error
         try {
-            console.log(jwt.decode(headerToken))
             token = jwt.verify(headerToken, SECRET)
         } catch (err) {
             err.statusCode = 500
@@ -27,7 +26,6 @@ module.exports = {
             error.statusCode = 401
             throw error
         }
-
         next()
     }
 }

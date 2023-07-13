@@ -5,6 +5,7 @@ const { PORT } = process.env
 // controller imports 
 const { getPosts, addPost } = require("./controller/postController")
 const { login, register } = require("./controller/authController")
+const { getProfile } = require("./controller/profileController")
 const { isAuthenticated } = require("./middleware/isAuthenticated")
 // sequelize imports 
 const { sequelize } = require("./util/database")
@@ -24,6 +25,8 @@ app.post("/posts", isAuthenticated, addPost)
 // auth endpoints
 app.post("/login", login)
 app.post("/register", register)
+// profile endpoints
+app.get("/profile/:id", isAuthenticated, getProfile)
 
 sequelize.sync()
 .then(() => {
