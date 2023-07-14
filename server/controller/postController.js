@@ -59,8 +59,8 @@ module.exports = {
   updatePost: async(req, res) => {
     try {
       let { id } = req.params
-      let {title, content, url, address, rating } = req.body
-      await Posts.update({title, content, url, locationRating: rating}, {
+      let {title, content, url, address, locationRating } = req.body
+      await Posts.update({title, content, url, locationRating}, {
         where: {
           id
         }
