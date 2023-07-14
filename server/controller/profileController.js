@@ -22,7 +22,6 @@ module.exports = {
       }
     })
     let data = {user: user[0].dataValues, posts: userPosts.map(post => post.dataValues)}
-    console.log(data)
     res.status(200).send(data)
   },
 }

@@ -6,6 +6,9 @@ import Profile from "./components/Pages/Profile"
 import Auth from "./components/Pages/Auth/Auth"
 import Location from "./components/Pages/Location"
 import NewPost from "./components/Pages/NewPost"
+import IndividualPost from "./components/Pages/IndividualPost"
+import { useDispatch } from "react-redux"
+import { persistData } from "./redux/slices/authSlice"
 
 let router = createBrowserRouter([
   {
@@ -31,14 +34,20 @@ let router = createBrowserRouter([
       {
         path: "post",
         element: <NewPost />
+      },
+      {
+        path: "posts/:id",
+        element: <IndividualPost />
       }
     ]
   }
 ])
 
 function App() {
+  const dispatch = useDispatch()
+  dispatch(persistData())
   return (
-      <RouterProvider router={router} />
+    <RouterProvider router={router} />
   )
 }
 

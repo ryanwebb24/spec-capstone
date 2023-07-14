@@ -3,7 +3,7 @@ const cors = require("cors")
 require("dotenv").config()
 const { PORT } = process.env
 // controller imports 
-const { getPosts, addPost } = require("./controller/postController")
+const { getPosts, addPost, deletePost, updatePost, getIndividualPost } = require("./controller/postController")
 const { login, register } = require("./controller/authController")
 const { getProfile } = require("./controller/profileController")
 const { isAuthenticated } = require("./middleware/isAuthenticated")
@@ -21,7 +21,10 @@ Posts.belongsTo(Users)
 
 // posts endpoints 
 app.get("/posts", getPosts)
+app.get("/posts/:id", getIndividualPost)
 app.post("/posts", isAuthenticated, addPost)
+app.delete("/posts/:id", isAuthenticated, deletePost)
+app.put("/posts/:id", isAuthenticated, updatePost)
 // auth endpoints
 app.post("/login", login)
 app.post("/register", register)

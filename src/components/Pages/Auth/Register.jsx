@@ -30,7 +30,7 @@ function Register() {
         setPassword("")
         setSecondPassword("")
         setMessage({status: "success", text: "Created user"})
-        dispatch(login({userId, token, isLoggedIn: true}))
+        dispatch(login({userId, token, isLoggedIn: true, exp}))
         navigate("/feed")
       })
       .catch(err => console.log(err))
