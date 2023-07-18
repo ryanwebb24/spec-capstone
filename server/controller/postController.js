@@ -2,6 +2,8 @@ const { Posts } = require("../models/posts")
 const { Comments } = require("../models/comments")
 const { Likes } = require("../models/likes")
 const { Locations } = require("../models/locations")
+const { Users } = require("../models/users")
+const { sequelize } = require("../util/database")
 
 module.exports = {
   getPosts: async (req, res) => {
@@ -10,10 +12,15 @@ module.exports = {
         include: [
           {model: Comments},
           {model: Likes},
+          {model: Locations},
+          {
+            model: Users,
+            attributes: ["id", "username", "isPublic"]
+          }
         ]
       })
-      // this will format the data to how we want from the sequelize query
-      posts = posts.map((post) => post.dataValues)
+      // this will format the data to how we want from the sequelize query and make it so only public users show there posts to the main feed
+      posts = posts.map((post) => post.dataValues).filter(post => post.user.dataValues.isPublic)
       res.status(200).send(posts)
     } catch (err) {
       console.log("error trying to get all post")
@@ -30,10 +37,15 @@ module.exports = {
         },
         include: [
           { model: Comments},
-          {model: Likes}
+          {model: Likes},
+          {model: Locations},
+          {
+            model: Users,
+            attributes: ["id", "username"]
+          }
         ]
       })
-      res.status(200).send({ post, comments: post.dataValues.comments.map(post => post.dataValues), likes: post.dataValues.likes.map(post => post.dataValues)})
+      res.status(200).send(post.dataValues)
     } catch (err) {
       console.log("error trying to get post")
       console.log(err)

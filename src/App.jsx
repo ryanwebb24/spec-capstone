@@ -20,7 +20,7 @@ let router = createBrowserRouter([
         element: <Feed />
       },
       {
-        path: "profile",
+        path: "profile/:id",
         element: <Profile />
       },
       {
@@ -38,6 +38,10 @@ let router = createBrowserRouter([
       {
         path: "posts/:id",
         element: <IndividualPost />
+      },
+      {
+        path: "locations/:id",
+        element: <Location />
       }
     ]
   }

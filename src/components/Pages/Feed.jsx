@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 
 
@@ -18,10 +18,18 @@ function Feed() {
   }, [])
   return (
     <div>
-      {posts.map((post) => (
+      {posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((post) => (
         <div key={post.id} onClick={() => {navigate(`/posts/${post.id}`)}} >
-        {/* add location address */}
+          <Link to={`/profile/${post.user.id}`}>{post.user.username}</Link>
           <h2>{post.title}</h2>
+          <Link to={`/locations/${post.location.id}`}>{post.location.name}</Link>
+          <p> 
+                {new Date(post.createdAt)
+                  .toDateString()
+                  .split(" ")
+                  .splice(1, 3)
+                  .join(" ")}
+          </p>
           <p>{post.content}</p>
           <p>{post.locationRating}</p>
           <p>{post.likes.length}</p>

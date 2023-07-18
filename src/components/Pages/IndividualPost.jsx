@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { selectUserId, selectToken } from "../../redux/slices/authSlice"
 import axios from "axios"
@@ -13,7 +13,6 @@ function IndividualPost() {
     title: "",
     content: "",
     url: "",
-    likes: "",
     locationRating: "",
     createdAt: "",
     userId: "",
@@ -25,13 +24,21 @@ function IndividualPost() {
   const [allLikes, setAllLikes] = useState([])
   const [liked, setLiked] = useState(false)
   const [likedId, setLikedId] = useState("")
+  const [location, setLocation] = useState("")
   function getPost() {
     axios
       .get(`http://localhost:5000/posts/${params.id}`)
       .then((res) => {
-        setPost(res.data.post)
-        setAllComments(res.data.comments)
-        setAllLikes(res.data.likes)
+        let {id, title, content, url, locationRating, createdAt, userId, comments, likes, location} = res.data
+        setPost({id, title, content, url, locationRating, createdAt, userId})
+        setAllComments(comments)
+        setAllLikes(likes)
+        setLocation(location)
+        let filteredList = likes.filter(like => like.userId === userId)
+        if (filteredList.length > 0){
+          setLiked(true)
+          setLikedId(filteredList[0].id)
+        }
       })
       .catch((err) => console.log(err))
   }
@@ -48,7 +55,6 @@ function IndividualPost() {
       })
       .then((res) => {
         setPost(res.data.post)
-        console.log(res.data.comments)
         setAllComments(res.data.comments)
         setAllLikes(res.data.likes)
         setEdit(false)
@@ -82,8 +88,7 @@ function IndividualPost() {
           Authorization: token,
         },
       })
-      .then((res) => {
-        console.log(res.data)
+      .then(() => {
         getPost()
       })
       .catch((err) => {
@@ -102,7 +107,6 @@ function IndividualPost() {
         },
       })
       .then((res) => {
-        console.log(res.data)
         setLikedId(res.data)
         setLiked(true)
         getPost()
@@ -118,9 +122,9 @@ function IndividualPost() {
           Authorization: token,
         },
       })
-      .then((res) => {
-        console.log(res.data)
+      .then(() => {
         setLiked(false)
+        setLikedId("")
         getPost()
       })
       .catch((err) => {
@@ -195,6 +199,7 @@ function IndividualPost() {
       ) : (
         <div>
           <h2>{post.title}</h2>
+          <Link to={`/locations/${location.id}`}>{location.name}</Link>
           <p>
             {new Date(post.createdAt)
               .toDateString()

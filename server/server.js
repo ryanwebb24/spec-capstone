@@ -7,7 +7,8 @@ const { getPosts, addPost, deletePost, updatePost, getIndividualPost } = require
 const { addComment, deleteComment } = require("./controller/commentController")
 const { addLike, deleteLike } = require("./controller/likeController")
 const { login, register } = require("./controller/authController")
-const { getProfile } = require("./controller/profileController")
+const { getProfile, updateProfile } = require("./controller/profileController")
+const { getLocation } = require("./controller/locationController")
 const { isAuthenticated } = require("./middleware/isAuthenticated")
 // sequelize imports 
 const { sequelize } = require("./util/database")
@@ -50,7 +51,11 @@ app.delete("/comments/:id", isAuthenticated, deleteComment)
 app.post("/login", login)
 app.post("/register", register)
 // profile endpoints
-app.get("/profile/:id", isAuthenticated, getProfile)
+app.get("/profile/:id", getProfile)
+app.put("/profile/:id", isAuthenticated, updateProfile)
+// location endpoints
+app.get("/locations/:id", getLocation)
+
 
 sequelize.sync()
 .then(() => {

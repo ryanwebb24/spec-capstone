@@ -20,8 +20,14 @@ module.exports = {
       await Likes.destroy({
         where: {
          id
+        },
+      })
+      let likes = await Likes.findAll({
+        where: {
+          id
         }
       })
+      console.log(likes)
       res.status(200).send("like deleted successfully")
     } catch(err) {
       console.log("error trying to delete a like")
