@@ -19,11 +19,19 @@ function IndividualPost() {
     userId: "",
   })
   const [edit, setEdit] = useState(false)
+  const [addComment, setAddComment] = useState(false)
+  const [userComment, setUserComment] = useState("")
+  const [allComments, setAllComments] = useState([])
+  const [allLikes, setAllLikes] = useState([])
+  const [liked, setLiked] = useState(false)
+  const [likedId, setLikedId] = useState("")
   function getPost() {
     axios
       .get(`http://localhost:5000/posts/${params.id}`)
       .then((res) => {
-        setPost(res.data)
+        setPost(res.data.post)
+        setAllComments(res.data.comments)
+        setAllLikes(res.data.likes)
       })
       .catch((err) => console.log(err))
   }
@@ -39,12 +47,85 @@ function IndividualPost() {
         },
       })
       .then((res) => {
-        console.log(res.data)
-        getPost()
-        // add put to send back the updated file
+        setPost(res.data.post)
+        console.log(res.data.comments)
+        setAllComments(res.data.comments)
+        setAllLikes(res.data.likes)
         setEdit(false)
       })
       .catch((err) => console.log(err))
+  }
+  function addCommentHandler() {
+    let body = {
+      content: userComment,
+      postId: params.id,
+      userId,
+    }
+    axios
+      .post("http://localhost:5000/comments", body, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then(() => {
+        setAddComment(false)
+        getPost()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+  function deleteHandler(id) {
+    axios
+      .delete(`http://localhost:5000/comments/${id}`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        console.log(res.data)
+        getPost()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+  function likeHandler(postId) {
+    let body = {
+      postId,
+      userId,
+    }
+    axios
+      .post(`http://localhost:5000/likes`, body, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        console.log(res.data)
+        setLikedId(res.data)
+        setLiked(true)
+        getPost()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+  function unlikeHandler(id) {
+    axios
+      .delete(`http://localhost:5000/likes/${id}`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        console.log(res.data)
+        setLiked(false)
+        getPost()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
   return (
     <>
@@ -124,7 +205,56 @@ function IndividualPost() {
           <img src={post.url} alt="img" />
           <p>{post.content}</p>
           <p>{post.locationRating}</p>
-          <p>{post.likes}</p>
+          <p>{allLikes.length}</p>
+          {liked ? (
+            <button
+              onClick={() => {
+                unlikeHandler(likedId)
+              }}
+            >
+              Unlike
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                likeHandler(post.id)
+              }}
+            >
+              Like
+            </button>
+          )}
+          {allComments.map((comment) => (
+            <div key={comment.id}>
+              <p>{comment.content}</p>
+              {comment.userId === userId && <button
+                onClick={() => {
+                  deleteHandler(comment.id)
+                }}
+              >
+                Delete Comment
+              </button>}
+            </div>
+          ))}
+          {addComment ? (
+            <div>
+              <input
+                type="text"
+                placeholder="comment here"
+                onChange={(event) => {
+                  setUserComment(event.target.value)
+                }}
+              />
+              <button onClick={addCommentHandler}>Save</button>
+            </div>
+          ) : (
+            <button
+              onClick={() => {
+                setAddComment(true)
+              }}
+            >
+              Add Comment
+            </button>
+          )}
           {post.userId === userId ? (
             <button
               onClick={() => {

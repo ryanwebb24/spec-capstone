@@ -8,6 +8,7 @@ function NewPost() {
   const [ address, setAddress ] = useState("")
   const [ url, setUrl ] = useState("")
   const [ rating, setRating ] = useState("")
+  const [ locationName, setLocationName] = useState("")
   const userId = useSelector(selectUserId)
   const token = useSelector(selectToken)
 
@@ -17,6 +18,7 @@ function NewPost() {
       title,
       content,
       address,
+      locationName,
       url,
       rating,
       userId
@@ -32,6 +34,7 @@ function NewPost() {
       setTitle("")
       setUrl("")
       setRating("")
+      setLocationName("")
     })
     .catch(err => {console.log(err)})
   }
@@ -40,6 +43,7 @@ function NewPost() {
       <form onSubmit={submitHandler}>
         <input type="text" placeholder="Title" value={title} onChange={(event) => {setTitle(event.target.value)}}/>
         <input type="text" placeholder="Caption" value={content} onChange={(event) => {setContent(event.target.value)}}/>
+        <input type="text"  placeholder="Location Name" value={locationName} onChange={(event) => {setLocationName(event.target.value)}}/>
         <input type="text" placeholder="Address" value={address} onChange={(event) => {setAddress(event.target.value)}}/>
         <input type="text" placeholder="Image URL" value={url} onChange={(event) => {setUrl(event.target.value)}}/>
         <input type="number" placeholder="Rating(1-5)" value={rating} onChange={(event) => {setRating(event.target.value)}}/>

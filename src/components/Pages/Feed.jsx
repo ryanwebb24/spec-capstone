@@ -23,8 +23,8 @@ function Feed() {
         {/* add location address */}
           <h2>{post.title}</h2>
           <p>{post.content}</p>
-          <p>{post.likes}</p>
           <p>{post.locationRating}</p>
+          <p>{post.likes.length}</p>
           <img src={post.url} alt="img" />
         </div>
       ))}
