@@ -1,11 +1,23 @@
 .header {
-  background-color: lightblue;
-  height: 50px;
+  background-color: #ADC178;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100px;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 .header > * {
   padding: 10px;
   text-align: center;
-  font-size: large;
+  font-size: 25px;
+  text-decoration: none;
+  color: #F0EAD2;
+  font-family: Roboto;
+}
+.header > button {
+  background-color: #A98467;
+  border: none;
+  border-radius: 5px;
 }

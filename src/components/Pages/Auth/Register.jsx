@@ -23,7 +23,6 @@ function Register() {
       }
       axios.post("http://localhost:5000/register", body)
       .then((res) => {
-        console.log(res.data)
         let {exp, token, userId, username} = res.data
         setUsername("")
         setEmail("")
@@ -31,7 +30,7 @@ function Register() {
         setSecondPassword("")
         setMessage({status: "success", text: "Created user"})
         dispatch(login({userId, token, isLoggedIn: true, exp}))
-        navigate("/feed")
+        navigate("")
       })
       .catch(err => console.log(err))
     } else {

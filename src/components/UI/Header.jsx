@@ -16,7 +16,7 @@ function Header() {
   }
   return (
     <header className={styles.header}>
-      <NavLink to="feed">{isLoggedIn ? "Feed" : "Home"}</NavLink>
+      <NavLink to="">Home</NavLink>
       {isLoggedIn && (
         <>
           <NavLink to={`profile/${userId}`}>Profile</NavLink>

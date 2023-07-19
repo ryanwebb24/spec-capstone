@@ -1,7 +1,7 @@
 import './App.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Root from "./components/Pages/Root"
-import Feed from "./components/Pages/Feed"
+import Home from "./components/Pages/Home"
 import Profile from "./components/Pages/Profile"
 import Auth from "./components/Pages/Auth/Auth"
 import Location from "./components/Pages/Location"
@@ -16,8 +16,8 @@ let router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: "feed",
-        element: <Feed />
+        index: true,
+        element: <Home />
       },
       {
         path: "profile/:id",

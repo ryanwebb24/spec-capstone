@@ -23,7 +23,7 @@ function Login() {
       setUsername("")
       setPassword("")
       dispatch(login({userId, token, isLoggedIn: true, exp}))
-      navigate("/feed")
+      navigate("")
       // make sure that the returned is added to redux and that isLoggedIn is set to true
     })
     .catch(err => {setMessage({status: "error", text: err.response.data})})
