@@ -43,7 +43,7 @@ module.exports = {
             model: Users,
             attributes: ["id", "username"]
           }
-        ]
+        ],
       })
       res.status(200).send(post.dataValues)
     } catch (err) {

@@ -4,9 +4,10 @@ module.exports = {
   addComment: async (req, res) => {
     try {
       let { postId, userId, content } = req.body
-      await Comments.create({ content, userId, postId})
-      console.log("created comment")
-      res.status(200).send("added comment successfully")
+      let comment = await Comments.create({ content, userId, postId}, {
+        returning: true
+      })
+      res.status(200).send(comment.dataValues)
     } catch (err) {
       console.log("error trying to add comment")
       console.log(err)
