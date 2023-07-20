@@ -20,6 +20,9 @@ function Location() {
     <>
       <h2>{location.name}</h2>
       <p>{location.address}</p>
+      <div>
+        {location.posts.map(post => (<img src={post.url} alt="img"/>))}
+      </div>
       <p>{Math.round((location.posts.reduce((acc, curr) => (acc + curr.locationRating), 0)) / location.posts.length)}</p>
       {location.posts.map(post => (
         <div key={post.id} onClick={() => {navigate(`/posts/${post.id}`)}}>
