@@ -2,6 +2,7 @@ const { Users } = require("../models/users")
 const { Posts } = require("../models/posts")
 const { Comments } = require("../models/comments")
 const { Likes } = require("../models/likes")
+const { Locations } = require("../models/locations")
 
 module.exports = {
   getProfile: async(req, res) => {
@@ -22,7 +23,7 @@ module.exports = {
       include: [
         {
           model: Posts,
-          include: [{model: Likes}]
+          include: [{model: Likes}, {model: Users}, {model: Comments}, {model: Locations}]
         },
       ]
     })

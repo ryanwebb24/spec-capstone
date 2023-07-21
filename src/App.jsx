@@ -6,7 +6,7 @@ import Profile from "./components/Pages/Profile"
 import Auth from "./components/Pages/Auth/Auth"
 import Location from "./components/Pages/Location"
 import NewPost from "./components/Pages/NewPost"
-import IndividualPost from "./components/Pages/IndividualPost"
+import FullIndividualPost from "./components/Pages/IndividualPost/FullIndividualPost"
 import { useDispatch } from "react-redux"
 import { persistData } from "./redux/slices/authSlice"
 
@@ -37,7 +37,7 @@ let router = createBrowserRouter([
       },
       {
         path: "posts/:id",
-        element: <IndividualPost />
+        element: <FullIndividualPost />
       },
       {
         path: "locations/:id",

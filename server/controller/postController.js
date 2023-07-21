@@ -43,7 +43,7 @@ module.exports = {
             model: Users,
             attributes: ["id", "username"]
           }
-        ]
+        ],
       })
       res.status(200).send(post.dataValues)
     } catch (err) {
@@ -106,19 +106,19 @@ module.exports = {
             id,
           },
           returning: true,
+          include: [
+            { model: Comments},
+            {model: Likes},
+            {model: Locations},
+            {
+              model: Users,
+              attributes: ["id", "username"]
+            }
+          ]
         }
       )
-      let comments = await Comments.findAll({
-        where: {
-          postId: id,
-        },
-      })
-      let likes = await Likes.findAll({
-        where: {
-          postId: id,
-        },
-      })
-      res.status(200).send({ post: updatedPost[1][0].dataValues, comments, likes })
+      
+      res.status(200).send(updatedPost[1])
     } catch (err) {
       console.log("error trying to update post")
       console.log(err)

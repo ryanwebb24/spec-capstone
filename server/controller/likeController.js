@@ -7,7 +7,7 @@ module.exports = {
       let like = await Likes.create({postId, userId}, {
         returning: true
       })
-      res.status(200).send(like.dataValues.id)
+      res.status(200).send(like.dataValues)
     } catch(err) {
       console.log("error trying to add a like")
       console.log(err)

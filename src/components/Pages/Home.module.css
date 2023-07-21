@@ -4,46 +4,5 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #6C584C;
-  font-family: Roboto;
-}
-.post {
-  border-bottom: double 5px #6c584c6e;
-  width: 90%;
-  padding-top: 20px;
-  padding-bottom: 10px;
-}
-.star {
-  color: orange;
-}
-.username {
-  text-decoration: none;
-  color: #5b4a40;
-  font-size: 20px;
-  padding-bottom: 5px;
-}
-.location {
-  text-decoration: none;
-  color: #877062;
-}
-.locationContainer {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-.image {
-  width: 100%;
-  object-fit: cover;
-}
-.topPost {
-  display: flex;
-  flex-direction: column;
-}
-
-@media screen and (min-width: 556px) {
-  .post{
-    width: 500px;
-  }
+  margin-bottom: 40px;
 }

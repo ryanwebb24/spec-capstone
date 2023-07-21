@@ -12,7 +12,7 @@ function Header() {
   const navigate = useNavigate()
   function clickHandler() {
     dispatch(logout())
-    navigate("/feed")
+    navigate("/")
   }
   return (
     <header className={styles.header}>
