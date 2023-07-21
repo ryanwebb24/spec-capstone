@@ -1,7 +1,16 @@
 import React, { useCallback, useState, useEffect } from "react"
 import styles from "./IndividualPost.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faStar, faLocationDot } from "@fortawesome/free-solid-svg-icons"
+import {
+  faStar,
+  faLocationDot,
+  faHeart as faSolidHeart,
+  faMessage as faSolidMessage,
+} from "@fortawesome/free-solid-svg-icons"
+import {
+  faHeart as faHollowHeart,
+  faMessage as faHollowMessage,
+} from "@fortawesome/free-regular-svg-icons"
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { selectUserId, selectToken } from "../../../redux/slices/authSlice"
@@ -85,19 +94,21 @@ function IndividualPost({ post, style }) {
       postId: id,
       userId,
     }
-    axios
-      .post("http://localhost:5000/comments", body, {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((res) => {
-        setAllComments((prevValues) => [...prevValues, res.data])
-        setUserComment("")
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    if (userComment.length > 0) {
+      axios
+        .post("http://localhost:5000/comments", body, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((res) => {
+          setAllComments((prevValues) => [...prevValues, res.data])
+          setUserComment("")
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }
   function deleteCommentHandler(id) {
     axios
@@ -107,7 +118,9 @@ function IndividualPost({ post, style }) {
         },
       })
       .then(() => {
-        let filteredComments = allComments.filter(comment => comment.id !== id)
+        let filteredComments = allComments.filter(
+          (comment) => comment.id !== id
+        )
         setAllComments(filteredComments)
       })
       .catch((err) => {
@@ -132,104 +145,112 @@ function IndividualPost({ post, style }) {
           />
           <p className={styles.location}>{post.location.name}</p>
         </div>
-      </div>
-      <div
-        className={styles.MainPost}
-        onClick={() => {
-          navigate(`/posts/${post.id}`)
-        }}
-      >
         <img className={styles.image} src={post.url} alt="img" />
-        <h2 className={styles.title}>{post.title}</h2>
-        <p className={styles.date}>
-          {new Date(post.createdAt)
-            .toDateString()
-            .split(" ")
-            .splice(1, 3)
-            .join(" ")}
-        </p>
-        <div className={styles.rating}>{starRating(post.locationRating)}</div>
-        <p className={styles.content}>{post.content}</p>
-        <p className={styles.likes}>
-          {allLikes.length === 1
-            ? allLikes.length + " like"
-            : allLikes.length + " likes"}
-        </p>
       </div>
-      {liked ? (
-        <button
+      <div className={styles.bottomPost}>
+        <div
+          className={styles.mainPost}
           onClick={() => {
-            unlikeHandler(likedId)
+            navigate(`/posts/${post.id}`)
           }}
         >
-          Unlike
-        </button>
-      ) : (
-        <button
-          onClick={() => {
-            likeHandler(post.id)
-          }}
-        >
-          Like
-        </button>
-      )}
-      {!commentIsShown && (
-        <button
-          onClick={() => {
-            setCommentIsShown(true)
-          }}
-        >
-          View comments
-        </button>
-      )}
-      <div className={styles.commentContainer}>
-        {commentIsShown ? (
-          allComments.length > 0 ? (
-            [
-              ...allComments.map((comment) => (
-                <div>
+          <h2 className={styles.title}>{post.title}</h2>
+          <p className={styles.date}>
+            {new Date(post.createdAt)
+              .toDateString()
+              .split(" ")
+              .splice(1, 3)
+              .join(" ")}
+          </p>
+          <div className={styles.rating}>{starRating(post.locationRating)}</div>
+          <p className={styles.content}>{post.content}</p>
+          <p className={styles.likes}>
+            {allLikes.length === 1
+              ? allLikes.length + " like"
+              : allLikes.length + " likes"}
+          </p>
+        </div>
+        {liked ? (
+          <button
+            className={`${styles.unlikeBtn} ${styles.btn}`}
+            onClick={() => {
+              unlikeHandler(likedId)
+            }}
+          >
+            <FontAwesomeIcon icon={faSolidHeart} />
+          </button>
+        ) : (
+          <button
+            className={`${styles.likeBtn} ${styles.btn}`}
+            onClick={() => {
+              likeHandler(post.id)
+            }}
+          >
+            <FontAwesomeIcon icon={faHollowHeart} />
+          </button>
+        )}
+        {!commentIsShown ? (
+          <button
+            className={`${styles.commentBtn} ${styles.btn}`}
+            onClick={() => {
+              setCommentIsShown(true)
+            }}
+          >
+            <FontAwesomeIcon icon={faHollowMessage} />
+          </button>
+        ) : (
+          <button
+            className={styles.btn}
+            onClick={() => {
+              setCommentIsShown(false)
+            }}
+          >
+            <FontAwesomeIcon icon={faSolidMessage} />
+          </button>
+        )}
+        <div className={styles.commentContainer}>
+          {commentIsShown ? (
+            allComments.length > 0 ? (
+              allComments.map((comment) => (
+                <div className={styles.individualComment}>
                   <p>{comment.content}</p>
-                  {comment.userId === userId ? <button onClick={() => {deleteCommentHandler(comment.id)}}>x</button> : null}
+                  {comment.userId === userId ? (
+                    <button
+                      className={styles.btn}
+                      onClick={() => {
+                        deleteCommentHandler(comment.id)
+                      }}
+                    >
+                      x
+                    </button>
+                  ) : null}
                 </div>
-              )),
-              <button
-                onClick={() => {
-                  setCommentIsShown(false)
-                }}
-              >
-                Hide Comments
-              </button>,
-            ]
-          ) : (
-            <>
+              ))
+            ) : (
               <p>No Comments Yet</p>
-              <button
-                  onClick={() => {
-                    setCommentIsShown(false)
-                  }}
-                >
-                  Hide Comments
-              </button>
-            </>
-          )
-        ) : null}
-      </div>
-      <div className={styles.addComment}>
-        <input
-          type="text"
-          value={userComment}
-          placeholder="Add a comment..."
-          onChange={(event) => {
-            setUserComment(event.target.value)
-          }}
-        />
-        <button
-          onClick={() => {
-            addCommentHandler(post.id)
-          }}
-        >
-          +
-        </button>
+            )
+          ) : null}
+        </div>
+        <div className={styles.addComment}>
+          <textarea
+            className={styles.commentBox}
+            value={userComment}
+            placeholder="Add a comment..."
+            onChange={(event) => {
+              setUserComment(event.target.value)
+            }}
+          />
+          {userComment.length > 0 ? (
+            <button
+              className={`${styles.btn} ${styles.addCommentBtn}`}
+              onClick={() => {
+                addCommentHandler(post.id)
+              }}
+            >
+              +
+            </button>
+          ) : null}
+        </div>
       </div>
     </div>
   )

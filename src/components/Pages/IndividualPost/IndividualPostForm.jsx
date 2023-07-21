@@ -1,10 +1,13 @@
 import React from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { selectToken } from "../../../redux/slices/authSlice"
+import styles from "./IndividualPostForm.module.css"
 
 function IndividualPostForm({ id, post, setPost, setEdit }) {
   const token = useSelector(selectToken)
+  const navigate = useNavigate()
 
   function submitHandler(event) {
     event.preventDefault()
@@ -15,16 +18,19 @@ function IndividualPostForm({ id, post, setPost, setEdit }) {
         },
       })
       .then((res) => {
-        setPost(res.data.post)
         setEdit(false)
       })
       .catch((err) => console.log(err))
   }
   return (
-    <div>
-      <form onSubmit={submitHandler}>
+    <div className={styles.editFormContainer}>
+      <form className={styles.editForm} onSubmit={submitHandler}>
+        <img className={styles.locationImg} src={post.url} alt="img" />
+        <label className={styles.label} htmlFor="title">Title:</label>
         <input
           type="text"
+          id="title"
+          className={styles.title}
           value={post.title}
           placeholder="Title"
           onChange={(event) => {
@@ -38,13 +44,19 @@ function IndividualPostForm({ id, post, setPost, setEdit }) {
                 locationRating: prevValue.locationRating,
                 createdAt: prevValue.createdAt,
                 userId: prevValue.createdAt,
+                user: prevValue.user,
+                location: prevValue.location,
+                likes: prevValue.likes,
+                comments: prevValue.comments
               }
             })
           }}
         />
-        <img src={post.url} alt="img" />
+        <label className={styles.label} htmlFor="caption">Caption:</label>
         <input
           type="text"
+          id="caption"
+          className={styles.content}
           value={post.content}
           placeholder="Caption"
           onChange={(event) => {
@@ -58,13 +70,22 @@ function IndividualPostForm({ id, post, setPost, setEdit }) {
                 locationRating: prevValue.locationRating,
                 createdAt: prevValue.createdAt,
                 userId: prevValue.createdAt,
+                user: prevValue.user,
+                location: prevValue.location,
+                likes: prevValue.likes,
+                comments: prevValue.comments
               }
             })
           }}
         />
+        <label className={styles.label} htmlFor="rating">Rating:</label>
         <input
           type="number"
+          id="rating"
+          className={styles.locationRating}
           value={post.locationRating}
+          max={5}
+          min={1}
           placeholder="Rating(1-5)"
           onChange={(event) => {
             setPost((prevValue) => {
@@ -77,12 +98,16 @@ function IndividualPostForm({ id, post, setPost, setEdit }) {
                 locationRating: +event.target.value,
                 createdAt: prevValue.createdAt,
                 userId: prevValue.createdAt,
+                user: prevValue.user,
+                location: prevValue.location,
+                likes: prevValue.likes,
+                comments: prevValue.comments
               }
             })
           }}
         />
         {/* add location address */}
-        <button type="submit">Save</button>
+        <button className={styles.submitBtn} type="submit">Save</button>
       </form>
     </div>
   )

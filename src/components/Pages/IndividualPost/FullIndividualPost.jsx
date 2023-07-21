@@ -42,7 +42,7 @@ function FullIndividualPost() {
       ) : 
         <>
           <IndividualPost post={post} style="post"/>
-          {userId === post.user.id ? <button>Edit Post</button> : null}
+          {userId === post.user.id ? <button className={styles.editBtn} onClick={() => {setEdit(true)}}>Edit Post</button> : null}
         </>
       }
     </div>

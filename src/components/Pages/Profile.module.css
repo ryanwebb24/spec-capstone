@@ -1,6 +1,41 @@
+.profilePage {
+  font-family: Roboto;
+  color: #5b4a40;
+}
+.profileContainer {
+  padding: 20px;
+}
 .postContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.btn {
+  border: none;
+  background-color: #A98467;
+  color: #F0EAD2;
+  border-radius: 5px;
+  padding: 10px;
+}
+.username {
+  margin: 0px;
+}
+.editBio {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.newBio {
+  border: none;
+  background-color: #F0EAD2;
+  color: #6C584C;
+  resize: none;
+  height: auto;
+  border-radius: 10px;
+  scrollbar-color: #dfd9c2 #F0EAD2;
+}
+.newBio:focus {
+  outline: none;
+  background-color: #e2dcc7;
 }

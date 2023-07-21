@@ -26,7 +26,7 @@ function Home() {
       {posts
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .map((post) => (
-          <IndividualPost post={post} key={post.id} style={"post"}/>
+          <IndividualPost post={post} key={post.id} style="feed"/>
         ))}
     </main>
   )

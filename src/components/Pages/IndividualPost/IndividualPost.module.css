@@ -1,12 +1,103 @@
 
-.post {
+.feed {
   border-bottom: double 5px #6c584c6e;
   width: 90%;
   padding-top: 20px;
   padding-bottom: 10px;
+  color: #6C584C;
+  font-family: Roboto;
 }
-.post .star {
+.star {
   color: orange;
+}
+.feed .title {
+  font-size: 25px;
+}
+.feed .username {
+  text-decoration: none;
+  color: #5b4a40;
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+.feed .location {
+  text-decoration: none;
+  color: #877062;
+}
+.feed .locationContainer {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  height: 30px;
+}
+.feed .image {
+  width: 100%;
+  object-fit: cover;
+}
+.feed .topPost {
+  display: flex;
+  flex-direction: column;
+}
+.feed .btn {
+  border: none;
+  background-color: #F0EAD2;
+  color: #6C584C;
+}
+.feed .addComment {
+  display: flex;
+  justify-content: space-between;
+}
+.feed .hideCommentBtn:hover {
+  border-bottom: #6c584c6e solid 1px;
+}
+.feed .commentBox {
+  border: none;
+  background-color: #F0EAD2;
+  color: #6C584C;
+  resize: none;
+  width: 90%;
+  height: auto;
+  border-radius: 10px;
+  scrollbar-color: #dfd9c2 #F0EAD2;
+}
+.feed .commentBox:focus {
+  outline: none;
+  background-color: #e2dcc7;
+}
+.feed .addCommentBtn {
+  width: 10%;
+}
+.feed .individualComment {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+}
+.feed .individualComment > p {
+  width: 90%;
+  height: auto;
+  word-break: break-all;
+  white-space: normal;
+}
+/* for indiviual post styling*/
+.post {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 10px;
+  border: solid 2px #6c584c6e;
+  border-radius: 10px;
+  width: 90%;
+  color: #6C584C;
+  font-family: Roboto;
+  gap: 20px;
+}
+.post .topPost {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.post .title {
+  font-size: 25px;
+  margin-top: 0px;
 }
 .post .username {
   text-decoration: none;
@@ -20,25 +111,71 @@
 }
 .post .locationContainer {
   display: flex;
-  gap: 5px;
   align-items: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  gap: 5px;
+  height: 30px;
 }
 .post .image {
   width: 100%;
   object-fit: cover;
 }
-.post .topPost {
-  display: flex;
-  flex-direction: column;
+
+.post .btn {
+  border: none;
+  background-color: #F0EAD2;
+  color: #6C584C;
 }
+.post .addComment {
+  display: flex;
+  justify-content: space-between;
+}
+.post .hideCommentBtn:hover {
+  border-bottom: #6c584c6e solid 1px;
+}
+.post .commentBox {
+  border: none;
+  background-color: #F0EAD2;
+  color: #6C584C;
+  resize: none;
+  width: 90%;
+  height: auto;
+  border-radius: 10px;
+  scrollbar-color: #dfd9c2 #F0EAD2;
+}
+.post .commentBox:focus {
+  outline: none;
+  background-color: #e2dcc7;
+}
+.post .addCommentBtn {
+  width: 10%;
+}
+.post .individualComment {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+}
+.post .individualComment > p {
+  width: 90%;
+  height: auto;
+  word-break: break-all;
+  white-space: normal;
+}
+
 @media screen and (min-width: 556px) {
-  .post{
+  .feed{
     width: 500px;
   }
+  
 }
-
-
+@media screen and (min-width: 755px) {
+  .post {
+    width: 700px;
+    display: flex;
+    flex-direction: row ;
+  }
+  .post .topPost {
+    width: 75%;
+  }
+}
 
 

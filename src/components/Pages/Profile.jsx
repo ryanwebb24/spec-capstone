@@ -77,10 +77,10 @@ function Profile() {
     })
   }
   return (
-    <>
-      <div>
-        <h2>{profile.username}</h2>
-        <p>
+    <div className={styles.profilePage}>
+      <div className={styles.profileContainer}>
+        <h2 className={styles.username}>{profile.username}</h2>
+        <p className={styles.date}>
           Memeber since{" "}
           {`${new Date(profile.createdAt)
             .toDateString()
@@ -88,27 +88,27 @@ function Profile() {
             .splice(1, 3)
             .join(" ")}`}
         </p>
-        <p>{profile.email}</p>
-        {profile.id === userId && (isPublic ? (<button onClick={() => {editIsPublicHandler(false)}}>Set to Private</button>) : (<button onClick={() => {editIsPublicHandler(true)}}>Set to Public</button>))}
-        {bio !== "" && !editBio ? (<p>{bio}</p>): null}
+        {userId === profile.id ? <p className={styles.email}>{profile.email}</p> : null}
+        {profile.id === userId && (isPublic ? (<button className={styles.btn} onClick={() => {editIsPublicHandler(false)}}>Set to Private</button>) : (<button className={styles.btn} onClick={() => {editIsPublicHandler(true)}}>Set to Public</button>))}
+        {bio !== "" && !editBio ? (<p className={styles.bio}>{bio}</p>): null}
         {profile.id === userId ? (!editBio ?  (
-          <button onClick={() => {setEditBio(true)}}>Edit bio</button>
+          <button className={styles.btn} onClick={() => {setEditBio(true)}}>Edit bio</button>
         ) : (
-          <div>
-            <input type="text" placeholder="bio" onChange={(event) => {setBio(event.target.value)}}/>
-            <button onClick={editBioHandler}>Save</button>
+          <div className={styles.editBio}>
+            <textarea className={styles.newBio} placeholder="bio" onChange={(event) => {setBio(event.target.value)}}/>
+            <button className={styles.btn} onClick={editBioHandler}>Save</button>
           </div>
         )) : null}
       </div>
       <div className={styles.postContainer}>
-        <h2>My Posts</h2>
+        <h2 className={styles.postTitle}>My Posts</h2>
         {profile.posts
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .map((post) => (
             <IndividualPost post={post} style="post"/>
           ))}
       </div>
-    </>
+    </div>
   )
 }
 export default Profile

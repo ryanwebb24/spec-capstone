@@ -1,4 +1,13 @@
 .footer{
   height: 100px;
-  border: 1px solid lightslategray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e4dec7;
+  color: #6C584C;
+  font-family: Roboto;
+}
+.footer > * {
+  width: 33%;
+  text-align: center;
 }

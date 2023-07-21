@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import styles from "./Location.module.css"
 
 function Location() {
   const params = useParams()
@@ -21,9 +22,9 @@ function Location() {
       <h2>{location.name}</h2>
       <p>{location.address}</p>
       <div>
-        {location.posts.map(post => (<img src={post.url} alt="img"/>))}
+        {location.posts.map(post => (<img className={styles.image} src={post.url} alt="img"/>))}
       </div>
-      <p>{Math.round((location.posts.reduce((acc, curr) => (acc + curr.locationRating), 0)) / location.posts.length)}</p>
+      <p>Rating: {Math.round((location.posts.reduce((acc, curr) => (acc + curr.locationRating), 0)) / location.posts.length)}</p>
       {location.posts.map(post => (
         <div key={post.id} onClick={() => {navigate(`/posts/${post.id}`)}}>
           <h3>{post.title}</h3>
