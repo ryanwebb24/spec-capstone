@@ -1,0 +1,83 @@
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: auto;
+  margin-top: 20px;
+  padding: 20px;
+  gap: 10px;
+  background-color: #F0EAD2;
+  border-radius: 10px;
+  align-items: center;
+  border: 1px solid #cdc7b1;
+  font-family: Roboto;
+}
+.username {
+  border: none;
+  background-color: #F0EAD2;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #cdc7b1;
+  width: 85%;
+  outline: none;
+  padding-left: 15px;
+  color: #6C584C;
+  font-size: 20px;
+}
+.password {
+  border: none;
+  background-color: #F0EAD2;
+  border: 1px solid #cdc7b1;
+  height: 50px;
+  border-radius: 10px;
+  width: 85%;
+  outline: none;
+  padding-left: 15px;
+  color: #6C584C;
+  font-size: 20px;
+}
+.password:focus, .username:focus, .loginBtn:hover{
+  background-color: #cdc7b1;
+}
+.loginBtn {
+  border: none;
+  background-color: #F0EAD2;
+  height: 50px;
+  border-radius: 10px;
+  width: 50%;
+  border: 1px solid #cdc7b1;
+  color: #6C584C;
+  font-size: 20px;
+}
+.success {
+  color: #ADC178;
+}
+.error {
+  color: #eaa82f;
+}
+.text {
+  color: #6C584C;
+  margin: 0px;
+}
+.registerBtn {
+  border: none;
+  background-color: #F0EAD2;
+  color: #6C584C;
+  font-size: 15px;
+}
+.registerBtn:hover {
+  color: #5d4c41;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 600px) {
+  .loginForm {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .loginForm {
+    width: 60%;
+  }
+}

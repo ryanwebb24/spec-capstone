@@ -7,6 +7,9 @@
   color: #6C584C;
   font-family: Roboto;
 }
+.mainPost {
+  cursor: pointer;
+}
 .star {
   color: orange;
 }
@@ -28,6 +31,7 @@
   gap: 5px;
   align-items: center;
   height: 30px;
+  cursor: pointer;
 }
 .feed .image {
   width: 100%;
@@ -41,6 +45,7 @@
   border: none;
   background-color: #F0EAD2;
   color: #6C584C;
+  cursor: pointer;
 }
 .feed .addComment {
   display: flex;
@@ -114,6 +119,7 @@
   align-items: center;
   gap: 5px;
   height: 30px;
+  cursor: pointer;
 }
 .post .image {
   width: 100%;
@@ -124,6 +130,7 @@
   border: none;
   background-color: #F0EAD2;
   color: #6C584C;
+  cursor: pointer;
 }
 .post .addComment {
   display: flex;

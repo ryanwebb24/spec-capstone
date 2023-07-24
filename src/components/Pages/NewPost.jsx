@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import axios from "axios"
 import { useSelector } from "react-redux"
 import { selectUserId, selectToken } from "../../redux/slices/authSlice"
+import styles from "./NewPost.module.css"
 function NewPost() {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
@@ -43,8 +44,9 @@ function NewPost() {
   }
   return (
     <>
-      <form onSubmit={submitHandler}>
-        <input
+      <form className={styles.postForm} onSubmit={submitHandler}>
+        <input 
+          className={styles.title}
           type="text"
           placeholder="Title"
           value={title}
@@ -52,8 +54,8 @@ function NewPost() {
             setTitle(event.target.value)
           }}
         />
-        <input
-          type="text"
+        <textarea
+          className={styles.caption} 
           placeholder="Caption"
           value={content}
           onChange={(event) => {
@@ -61,6 +63,7 @@ function NewPost() {
           }}
         />
         <input
+          className={styles.locationName}
           type="text"
           placeholder="Location Name"
           value={locationName}
@@ -69,6 +72,7 @@ function NewPost() {
           }}
         />
         <input
+          className={styles.address}
           type="text"
           placeholder="Address"
           value={address}
@@ -77,6 +81,7 @@ function NewPost() {
           }}
         />
         <input
+          className={styles.url}
           type="text"
           placeholder="Image URL"
           value={url}
@@ -85,6 +90,7 @@ function NewPost() {
           }}
         />
         <input
+          className={styles.rating}
           type="number"
           placeholder="Rating(1-5)"
           max={5}
@@ -94,7 +100,7 @@ function NewPost() {
             setRating(event.target.value)
           }}
         />
-        <button type="submit">Post</button>
+        <button className={styles.submitBtn} type="submit">Post</button>
       </form>
     </>
   )

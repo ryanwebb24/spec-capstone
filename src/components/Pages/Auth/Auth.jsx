@@ -6,8 +6,7 @@ function Auth() {
   const [ login, setLogin ] = useState(true)
   return (
     <>
-      {login ? <Login /> : <Register />}
-      <button onClick={() => setLogin(prevValue => !prevValue)}>{login ? "Register" : "Login"}</button>
+      {login ? <Login setLogin={setLogin} /> : <Register setLogin={setLogin} />}
     </>
   )
 }

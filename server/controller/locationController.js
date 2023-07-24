@@ -1,5 +1,6 @@
 const { Locations } = require("../models/locations")
 const { Posts } = require("../models/posts")
+const { Users } = require("../models/users")
 
 module.exports = {
   getLocation: async(req, res) => {
@@ -10,7 +11,10 @@ module.exports = {
           id
         },
         include: [
-          {model: Posts}
+          {
+            model: Posts,
+            include: [{model: Users}]
+          }
         ]
       })
       res.status(200).send(location.dataValues)

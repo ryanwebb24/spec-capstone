@@ -18,7 +18,7 @@ module.exports = {
       allowNull: false
     },
     url: {
-      type: DataTypes.STRING(1000),
+      type: DataTypes.TEXT,
       allowNull: false
     },
     locationRating: {

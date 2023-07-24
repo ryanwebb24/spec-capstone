@@ -13,7 +13,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons"
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
-import { selectUserId, selectToken } from "../../../redux/slices/authSlice"
+import { selectUserId, selectToken, selectIsloggedIn } from "../../../redux/slices/authSlice"
 import axios from "axios"
 
 function IndividualPost({ post, style }) {
@@ -26,6 +26,7 @@ function IndividualPost({ post, style }) {
   const [userComment, setUserComment] = useState("")
   const userId = useSelector(selectUserId)
   const token = useSelector(selectToken)
+  const isLoggedIn = useSelector(selectIsloggedIn)
 
   let starRating = useCallback((amount) => {
     let stars = []
@@ -232,14 +233,14 @@ function IndividualPost({ post, style }) {
           ) : null}
         </div>
         <div className={styles.addComment}>
-          <textarea
+          {isLoggedIn && <textarea
             className={styles.commentBox}
             value={userComment}
             placeholder="Add a comment..."
             onChange={(event) => {
               setUserComment(event.target.value)
             }}
-          />
+          />}
           {userComment.length > 0 ? (
             <button
               className={`${styles.btn} ${styles.addCommentBtn}`}

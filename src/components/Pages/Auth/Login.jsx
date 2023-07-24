@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-import { useDispatch, useSelector } from "react-redux"
-import { login, logout } from "../../../redux/slices/authSlice"
+import { useDispatch} from "react-redux"
+import { login} from "../../../redux/slices/authSlice"
+import styles from "./Login.module.css"
 
-function Login() {
+function Login({ setLogin }) {
   const [ username, setUsername ] = useState("")
   const [ password, setPassword ] = useState("")
   const [ message, setMessage ] = useState({status: "", text: ""})
@@ -19,7 +20,7 @@ function Login() {
     }
     axios.post("http://localhost:5000/login", body)
     .then(res => {
-      let {userId, username, token, exp} = res.data
+      let {userId, token, exp} = res.data
       setUsername("")
       setPassword("")
       dispatch(login({userId, token, isLoggedIn: true, exp}))
@@ -30,11 +31,13 @@ function Login() {
   }
 
   return (
-    <form onSubmit={submitHandler}>
-      <input type="text" placeholder="Username" value={username} onChange={(event) => {setUsername(event.target.value)}}/>
-      <input type="password" placeholder="Password" value={password} onChange={(event) => {setPassword(event.target.value)}}/>
-      <button type="submit">login</button>
-      <p>{message.text}</p>
+    <form className={styles.loginForm} onSubmit={submitHandler}>
+      <input className={styles.username} type="text" placeholder="Username" value={username} onChange={(event) => {setUsername(event.target.value)}}/>
+      <input className={styles.password} type="password" placeholder="Password" value={password} onChange={(event) => {setPassword(event.target.value)}}/>
+      <p className={styles[message.status]}>{message.text}</p>
+      <button className={styles.loginBtn} type="submit">login</button>
+      <p className={styles.text}>Don't have an acount?</p>
+      <button className={styles.registerBtn} onClick={() => {setLogin(false)}}>register</button>
     </form>
   )
 }

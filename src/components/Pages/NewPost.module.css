@@ -1,0 +1,120 @@
+.postForm {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: auto;
+  margin-top: 20px;
+  padding: 20px;
+  gap: 10px;
+  background-color: #F0EAD2;
+  border-radius: 10px;
+  align-items: center;
+  border: 1px solid #cdc7b1;
+  font-family: Roboto;
+}
+.title {
+  border: none;
+  background-color: #F0EAD2;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #cdc7b1;
+  width: 85%;
+  outline: none;
+  padding-left: 15px;
+  color: #6C584C;
+  font-size: 20px;
+}
+.caption {
+  border: none;
+  background-color: #F0EAD2;
+  height: 80px;
+  border-radius: 10px;
+  border: 1px solid #cdc7b1;
+  width: 85%;
+  outline: none;
+  padding-left: 10px;
+  color: #6C584C;
+  font-size: 20px;
+  resize: none;
+  padding-top: 10px;
+}
+.locationName {
+  border: none;
+  background-color: #F0EAD2;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #cdc7b1;
+  width: 85%;
+  outline: none;
+  padding-left: 15px;
+  color: #6C584C;
+  font-size: 20px;
+}
+.address {
+  border: none;
+  background-color: #F0EAD2;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #cdc7b1;
+  width: 85%;
+  outline: none;
+  padding-left: 15px;
+  color: #6C584C;
+  font-size: 20px;
+}
+.url {
+  border: none;
+  background-color: #F0EAD2;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #cdc7b1;
+  width: 85%;
+  outline: none;
+  padding-left: 15px;
+  color: #6C584C;
+  font-size: 20px;
+}
+.rating {
+  border: none;
+  background-color: #F0EAD2;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #cdc7b1;
+  width: 85%;
+  outline: none;
+  padding-left: 15px;
+  color: #6C584C;
+  font-size: 20px;
+  appearance: textfield;
+}
+.submitBtn {
+  border: none;
+  background-color: #F0EAD2;
+  height: 50px;
+  border-radius: 10px;
+  width: 50%;
+  border: 1px solid #cdc7b1;
+  color: #6C584C;
+  font-size: 20px;
+}
+
+.title:focus, .caption:focus, .locationName:focus, .address:focus, .url:focus, .rating:focus, .submitBtn:hover {
+  background-color: #cdc7b1;
+}
+.rating::-webkit-outer-spin-button,
+.rating::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+@media screen and (max-width: 1100px) {
+  .postForm {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .postForm {
+    width: 85%;
+  }
+}
