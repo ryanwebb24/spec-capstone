@@ -57,7 +57,7 @@ function IndividualPost({ post, style }) {
       userId,
     }
     axios
-      .post(`http://44.202.237.178:5000/likes`, body, {
+      .post(`https://specserver.thewebbdeveloper.com/likes`, body, {
         headers: {
           Authorization: token,
         },
@@ -74,7 +74,7 @@ function IndividualPost({ post, style }) {
 
   function unlikeHandler(id) {
     axios
-      .delete(`http://44.202.237.178:5000/likes/${id}`, {
+      .delete(`https://specserver.thewebbdeveloper.com/likes/${id}`, {
         headers: {
           Authorization: token,
         },
@@ -97,7 +97,7 @@ function IndividualPost({ post, style }) {
     }
     if (userComment.length > 0) {
       axios
-        .post("http://44.202.237.178:5000/comments", body, {
+        .post("https://specserver.thewebbdeveloper.com/comments", body, {
           headers: {
             Authorization: token,
           },
@@ -113,7 +113,7 @@ function IndividualPost({ post, style }) {
   }
   function deleteCommentHandler(id) {
     axios
-      .delete(`http://44.202.237.178:5000/comments/${id}`, {
+      .delete(`https://specserver.thewebbdeveloper.com/comments/${id}`, {
         headers: {
           Authorization: token,
         },

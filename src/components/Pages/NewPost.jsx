@@ -25,7 +25,7 @@ function NewPost() {
       userId,
     }
     axios
-      .post("http://44.202.237.178:5000/posts", body, {
+      .post("https://specserver.thewebbdeveloper.com/posts", body, {
         headers: {
           Authorization: token,
         },

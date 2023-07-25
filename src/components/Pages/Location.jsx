@@ -21,7 +21,7 @@ function Location() {
   })
   useEffect(() => {
     axios
-      .get(`http://44.202.237.178:5000/locations/${params.id}`)
+      .get(`https://specserver.thewebbdeveloper.com/locations/${params.id}`)
       .then((res) => {
         setLocation(res.data)
       })

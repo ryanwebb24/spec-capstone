@@ -25,7 +25,7 @@ function FullIndividualPost() {
   const [edit, setEdit] = useState(false)
   function getPost() {
     axios
-      .get(`http://44.202.237.178:5000/posts/${params.id}`)
+      .get(`https://specserver.thewebbdeveloper.com/posts/${params.id}`)
       .then((res) => {
         setPost(res.data)
         console.log(res.data)

@@ -18,7 +18,7 @@ function Login({ setLogin }) {
       username, 
       password
     }
-    axios.post("http://44.202.237.178:5000/login", body)
+    axios.post("https://specserver.thewebbdeveloper.com/login", body)
     .then(res => {
       let {userId, token, exp} = res.data
       setUsername("")

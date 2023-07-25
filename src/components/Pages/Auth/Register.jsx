@@ -22,7 +22,7 @@ function Register({ setLogin }) {
         username,
         password
       }
-      axios.post("http://44.202.237.178:5000/register", body)
+      axios.post("https://specserver.thewebbdeveloper.com/register", body)
       .then((res) => {
         let {exp, token, userId, username} = res.data
         setUsername("")

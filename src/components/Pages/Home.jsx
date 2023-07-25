@@ -11,7 +11,7 @@ function Home() {
   
   useEffect(() => {
     axios
-      .get("http://44.202.237.178:5000/posts")
+      .get("https://specserver.thewebbdeveloper.com/posts")
       .then((res) => {
         setPosts(res.data)
       })

@@ -18,7 +18,7 @@ function Profile() {
 
   useEffect(() => {
     axios
-      .get(`http://44.202.237.178:5000/profile/${params.id}`)
+      .get(`https://specserver.thewebbdeveloper.com/profile/${params.id}`)
       .then((res) => {
         setProfile(res.data)
         setBio(res.data.bio)
@@ -28,7 +28,7 @@ function Profile() {
   }, [])
   function deleteHandler(id) {
     axios
-      .delete(`http://44.202.237.178:5000/posts/${id}`, {
+      .delete(`https://specserver.thewebbdeveloper.com/posts/${id}`, {
         headers: {
           Authorization: token,
         },
@@ -47,7 +47,7 @@ function Profile() {
     let body = {
       bio
     }
-    axios.put(`http://44.202.237.178:5000/profile/${userId}`, body, {
+    axios.put(`https://specserver.thewebbdeveloper.com/profile/${userId}`, body, {
       headers: {
         Authorization: token
       }
@@ -64,7 +64,7 @@ function Profile() {
     let body = {
       isPublic: bool
     }
-    axios.put(`http://44.202.237.178:5000/profile/${userId}`, body, {
+    axios.put(`https://specserver.thewebbdeveloper.com/profile/${userId}`, body, {
       headers: {
         Authorization: token
       }
