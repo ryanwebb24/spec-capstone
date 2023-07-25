@@ -16,18 +16,25 @@ function Header() {
   }
   return (
     <header className={styles.header}>
-      <NavLink to="">Home</NavLink>
-      {isLoggedIn && (
-        <>
-          <NavLink to={`profile/${userId}`}>Profile</NavLink>
-          <NavLink to="post">New Post</NavLink>
-        </>
-      )}
-      {isLoggedIn ? (
-        <button onClick={clickHandler}>Logout</button>
-      ) : (
-        <NavLink to="login">Login</NavLink>
-      )}
+      <div className={styles.leftNav}>
+        <NavLink to="">Home</NavLink>
+        {isLoggedIn && (
+          <>
+            <NavLink to={`profile/${userId}`}>Profile</NavLink>
+            <NavLink to="post">New Post</NavLink>
+          </>
+        )}
+      </div>
+      <div className={styles.middleNav}>
+          <h1>Trip Bliss</h1>
+      </div>
+      <div className={styles.rightNav}>
+        {isLoggedIn ? (
+          <button onClick={clickHandler}>Logout</button>
+        ) : (
+          <NavLink to="login">Login</NavLink>
+        )}
+      </div>
     </header>
   )
 }

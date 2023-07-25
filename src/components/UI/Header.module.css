@@ -7,17 +7,50 @@
   display: flex;
   align-items: center;
   width: 100%;
-}
-.header > * {
-  padding: 10px;
-  text-align: center;
-  font-size: 25px;
-  text-decoration: none;
   color: #F0EAD2;
   font-family: Roboto;
 }
-.header > button {
+.header > * {
+  width: 33%;
+}
+.leftNav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.leftNav > * {
+  color: #F0EAD2;
+  font-family: Roboto;
+  text-decoration: none;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 5px;
+}
+.leftNav > *:hover {
+  background-color: #9aab6a;
+}
+.middleNav {
+  display: flex;
+  justify-content: center;
+  cursor: default;
+}
+.rightNav {
+  display: flex;
+  justify-content: center;
+}
+.rightNav > button {
+  color: #F0EAD2;
   background-color: #A98467;
   border: none;
   border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
 }
+.rightNav > button:hover {
+  background-color: #97765d;
+  cursor: pointer;
+}
+
+/* @media screen and (max-width: 700px) {
+
+} */
