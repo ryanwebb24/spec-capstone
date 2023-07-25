@@ -27,7 +27,9 @@ function Profile() {
       .catch((err) => console.log(err))
   }, [])
   function deleteHandler(id) {
-    axios
+    const response = confirm("Are you sure you want to delete?")
+    if (response) {
+      axios
       .delete(`https://specserver.thewebbdeveloper.com/posts/${id}`, {
         headers: {
           Authorization: token,
@@ -42,6 +44,7 @@ function Profile() {
         })
       })
       .catch((err) => console.log(err))
+    }
   }
   function editBioHandler() {
     let body = {
@@ -95,7 +98,7 @@ function Profile() {
           <button className={styles.btn} onClick={() => {setEditBio(true)}}>Edit bio</button>
         ) : (
           <div className={styles.editBio}>
-            <textarea className={styles.newBio} placeholder="bio" onChange={(event) => {setBio(event.target.value)}}/>
+            <textarea className={styles.newBio} placeholder="bio" value={bio} onChange={(event) => {setBio(event.target.value)}}/>
             <button className={styles.btn} onClick={editBioHandler}>Save</button>
           </div>
         )) : null}
@@ -105,7 +108,10 @@ function Profile() {
         {profile.posts
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .map((post) => (
-            <IndividualPost post={post} style="post"/>
+            <div className={styles.posts} key={post.id}>
+              <IndividualPost post={post} style="post"/>
+              <button className={styles.btn} onClick={() => {deleteHandler(post.id)}}>Delete post</button>
+            </div>
           ))}
       </div>
     </div>
