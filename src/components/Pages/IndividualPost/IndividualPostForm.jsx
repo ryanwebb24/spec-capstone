@@ -12,7 +12,7 @@ function IndividualPostForm({ id, post, setPost, setEdit }) {
   function submitHandler(event) {
     event.preventDefault()
     axios
-      .put(`http://localhost:5000/posts/${id}`, post, {
+      .put(`http://44.202.237.178:5000/posts/${id}`, post, {
         headers: {
           Authorization: token,
         },

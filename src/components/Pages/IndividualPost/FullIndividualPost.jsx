@@ -25,7 +25,7 @@ function FullIndividualPost() {
   const [edit, setEdit] = useState(false)
   function getPost() {
     axios
-      .get(`http://localhost:5000/posts/${params.id}`)
+      .get(`http://44.202.237.178:5000/posts/${params.id}`)
       .then((res) => {
         setPost(res.data)
         console.log(res.data)

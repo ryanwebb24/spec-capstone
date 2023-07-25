@@ -32,7 +32,7 @@ function Header() {
         {isLoggedIn ? (
           <button onClick={clickHandler}>Logout</button>
         ) : (
-          <NavLink to="login">Login</NavLink>
+          <NavLink className={styles.login} to="login">Login</NavLink>
         )}
       </div>
     </header>

@@ -10,13 +10,19 @@
   color: #F0EAD2;
   font-family: Roboto;
 }
+@media screen and (max-width: 500px) {
+  .header {
+    height: 150px;
+  }
+}
 .header > * {
   width: 33%;
 }
 .leftNav {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  gap: 10px;
+  padding-left: 20px;
 }
 .leftNav > * {
   color: #F0EAD2;
@@ -26,7 +32,7 @@
   border-radius: 5px;
   padding: 5px;
 }
-.leftNav > *:hover {
+.leftNav > *:hover, .login:hover {
   background-color: #9aab6a;
 }
 .middleNav {
@@ -36,7 +42,8 @@
 }
 .rightNav {
   display: flex;
-  justify-content: center;
+  justify-content: right;
+  padding-right: 20px;
 }
 .rightNav > button {
   color: #F0EAD2;
@@ -45,6 +52,14 @@
   border-radius: 5px;
   padding: 10px;
   font-size: 20px;
+}
+.login {
+  color: #F0EAD2;
+  font-family: Roboto;
+  text-decoration: none;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 5px;
 }
 .rightNav > button:hover {
   background-color: #97765d;

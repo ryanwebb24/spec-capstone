@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState, useCallback } from "react"
 import axios from "axios"
@@ -9,7 +9,7 @@ import { faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons"
 function Location() {
   const params = useParams()
   const navigate = useNavigate()
-  const [location, setLocation] = useState({name: "", address: "", posts: []})
+  const [location, setLocation] = useState({ name: "", address: "", posts: [] })
   let starRating = useCallback((amount) => {
     let stars = []
     for (let i = 0; i < amount; i++) {
@@ -20,33 +20,45 @@ function Location() {
     return stars
   })
   useEffect(() => {
-    axios.get(`http://localhost:5000/locations/${params.id}`)
-    .then(res => {
-      setLocation(res.data)
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  },[])
+    axios
+      .get(`http://44.202.237.178:5000/locations/${params.id}`)
+      .then((res) => {
+        setLocation(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
   return (
     <div className={styles.locationContainer}>
       <h2 className={styles.name}>{location.name}</h2>
       <div className={styles.fullLocation}>
-        <FontAwesomeIcon
-            className={styles.locationPin}
-            icon={faLocationDot}
-          />
-        <p className={styles.address}>{location.address}
-        </p>
+        <FontAwesomeIcon className={styles.locationPin} icon={faLocationDot} />
+        <p className={styles.address}>{location.address}</p>
       </div>
-      <div className={styles.rating}>{starRating(Math.round((location.posts.reduce((acc, curr) => (acc + curr.locationRating), 0)) / location.posts.length))}</div>
+      <div className={styles.rating}>
+        {starRating(
+          Math.round(
+            location.posts.reduce((acc, curr) => acc + curr.locationRating, 0) /
+              location.posts.length
+          )
+        )}
+      </div>
       <div className={styles.imageContainer}>
-        {location.posts.map(post => (<img className={styles.image} src={post.url} alt="img"/>))}
+        {location.posts.map((post) => (
+          <img className={styles.image} src={post.url} alt="img" />
+        ))}
       </div>
       <h2>Posts:</h2>
       <div className={styles.postContainer}>
-        {location.posts.map(post => (
-          <div className={styles.post} key={post.id} onClick={() => {navigate(`/posts/${post.id}`)}}>
+        {location.posts.map((post) => (
+          <div
+            className={styles.post}
+            key={post.id}
+            onClick={() => {
+              navigate(`/posts/${post.id}`)
+            }}
+          >
             <h3 className={styles.username}>{post.user.username}</h3>
             <div className={styles.mainPost}>
               <div>
@@ -55,9 +67,7 @@ function Location() {
                   {starRating(post.locationRating)}
                 </div>
               </div>
-              <p className={styles.postContent}>
-                {post.content}
-              </p>
+              <p className={styles.postContent}>{post.content}</p>
             </div>
           </div>
         ))}

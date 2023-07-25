@@ -11,10 +11,9 @@ function Home() {
   
   useEffect(() => {
     axios
-      .get("http://localhost:5000/posts")
+      .get("http://44.202.237.178:5000/posts")
       .then((res) => {
         setPosts(res.data)
-        console.log(res.data)
       })
       .catch((err) => {
         console.log(err)

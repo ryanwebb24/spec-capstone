@@ -57,7 +57,7 @@ function IndividualPost({ post, style }) {
       userId,
     }
     axios
-      .post(`http://localhost:5000/likes`, body, {
+      .post(`http://44.202.237.178:5000/likes`, body, {
         headers: {
           Authorization: token,
         },
@@ -74,7 +74,7 @@ function IndividualPost({ post, style }) {
 
   function unlikeHandler(id) {
     axios
-      .delete(`http://localhost:5000/likes/${id}`, {
+      .delete(`http://44.202.237.178:5000/likes/${id}`, {
         headers: {
           Authorization: token,
         },
@@ -97,7 +97,7 @@ function IndividualPost({ post, style }) {
     }
     if (userComment.length > 0) {
       axios
-        .post("http://localhost:5000/comments", body, {
+        .post("http://44.202.237.178:5000/comments", body, {
           headers: {
             Authorization: token,
           },
@@ -113,7 +113,7 @@ function IndividualPost({ post, style }) {
   }
   function deleteCommentHandler(id) {
     axios
-      .delete(`http://localhost:5000/comments/${id}`, {
+      .delete(`http://44.202.237.178:5000/comments/${id}`, {
         headers: {
           Authorization: token,
         },

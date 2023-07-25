@@ -18,7 +18,7 @@ function Profile() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/profile/${params.id}`)
+      .get(`http://44.202.237.178:5000/profile/${params.id}`)
       .then((res) => {
         setProfile(res.data)
         setBio(res.data.bio)
@@ -28,7 +28,7 @@ function Profile() {
   }, [])
   function deleteHandler(id) {
     axios
-      .delete(`http://localhost:5000/posts/${id}`, {
+      .delete(`http://44.202.237.178:5000/posts/${id}`, {
         headers: {
           Authorization: token,
         },
@@ -47,7 +47,7 @@ function Profile() {
     let body = {
       bio
     }
-    axios.put(`http://localhost:5000/profile/${userId}`, body, {
+    axios.put(`http://44.202.237.178:5000/profile/${userId}`, body, {
       headers: {
         Authorization: token
       }
@@ -64,7 +64,7 @@ function Profile() {
     let body = {
       isPublic: bool
     }
-    axios.put(`http://localhost:5000/profile/${userId}`, body, {
+    axios.put(`http://44.202.237.178:5000/profile/${userId}`, body, {
       headers: {
         Authorization: token
       }
@@ -81,7 +81,7 @@ function Profile() {
       <div className={styles.profileContainer}>
         <h2 className={styles.username}>{profile.username}</h2>
         <p className={styles.date}>
-          Memeber since{" "}
+          Member since{" "}
           {`${new Date(profile.createdAt)
             .toDateString()
             .split(" ")
@@ -89,7 +89,7 @@ function Profile() {
             .join(" ")}`}
         </p>
         {userId === profile.id ? <p className={styles.email}>{profile.email}</p> : null}
-        {profile.id === userId && (isPublic ? (<button className={styles.btn} onClick={() => {editIsPublicHandler(false)}}>Set to Private</button>) : (<button className={styles.btn} onClick={() => {editIsPublicHandler(true)}}>Set to Public</button>))}
+        {profile.id === userId && (isPublic ? (<button className={styles.btn} onClick={() => {editIsPublicHandler(false)}}>Set to private</button>) : (<button className={styles.btn} onClick={() => {editIsPublicHandler(true)}}>Set to Public</button>))}
         {bio !== "" && !editBio ? (<p className={styles.bio}>{bio}</p>): null}
         {profile.id === userId ? (!editBio ?  (
           <button className={styles.btn} onClick={() => {setEditBio(true)}}>Edit bio</button>

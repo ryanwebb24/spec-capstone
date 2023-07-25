@@ -11,3 +11,10 @@
   width: 33%;
   text-align: center;
 }
+.github {
+  color: #6C584C;
+  text-decoration: none;
+}
+.github:hover {
+  text-decoration: underline;
+}

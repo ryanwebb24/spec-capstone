@@ -22,7 +22,7 @@ function Register({ setLogin }) {
         username,
         password
       }
-      axios.post("http://localhost:5000/register", body)
+      axios.post("http://44.202.237.178:5000/register", body)
       .then((res) => {
         let {exp, token, userId, username} = res.data
         setUsername("")
@@ -48,7 +48,7 @@ function Register({ setLogin }) {
       <p className={styles[message.status]}>{message.text}</p>
       <button className={styles.createBtn} type="submit">Create account</button>
       <p className={styles.text}>Already have an account?</p>
-      <button className={styles.loginBtn} type="button" onClick={() => {setLogin(true)}}>login</button>
+      <button className={styles.loginBtn} type="button" onClick={() => {setLogin(true)}}>Login</button>
     </form>
   )
 }

@@ -18,7 +18,7 @@ function Login({ setLogin }) {
       username, 
       password
     }
-    axios.post("http://localhost:5000/login", body)
+    axios.post("http://44.202.237.178:5000/login", body)
     .then(res => {
       let {userId, token, exp} = res.data
       setUsername("")
@@ -35,9 +35,9 @@ function Login({ setLogin }) {
       <input className={styles.username} type="text" placeholder="Username" value={username} onChange={(event) => {setUsername(event.target.value)}}/>
       <input className={styles.password} type="password" placeholder="Password" value={password} onChange={(event) => {setPassword(event.target.value)}}/>
       <p className={styles[message.status]}>{message.text}</p>
-      <button className={styles.loginBtn} type="submit">login</button>
+      <button className={styles.loginBtn} type="submit">Login</button>
       <p className={styles.text}>Don't have an acount?</p>
-      <button className={styles.registerBtn} onClick={() => {setLogin(false)}}>register</button>
+      <button className={styles.registerBtn} onClick={() => {setLogin(false)}}>Register</button>
     </form>
   )
 }

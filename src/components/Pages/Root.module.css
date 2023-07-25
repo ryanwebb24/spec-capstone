@@ -7,3 +7,9 @@
   padding-top: 100px;
   min-height: calc(100vh - 202px);
 }
+
+@media screen and (max-width: 500px) {
+  .outlet{
+    padding-top: 150px;
+  }
+}
