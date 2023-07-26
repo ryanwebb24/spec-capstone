@@ -110,7 +110,7 @@ function Profile() {
           .map((post) => (
             <div className={styles.posts} key={post.id}>
               <IndividualPost post={post} style="post"/>
-              <button className={styles.btn} onClick={() => {deleteHandler(post.id)}}>Delete post</button>
+              {userId === post.userId && <button className={styles.btn} onClick={() => {deleteHandler(post.id)}}>Delete post</button>}
             </div>
           ))}
       </div>
